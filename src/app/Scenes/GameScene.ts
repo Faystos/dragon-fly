@@ -1,20 +1,28 @@
-import { Scene } from "phaser";
+import { Scene, Types, GameObjects } from "phaser";
+import { Player } from "../Sprites/Player";
+import { EnemyGroup } from "../Sprites/EnemyGroup";
 
 export class GameScene extends Scene {
+  player!: Player;
+  cursors!: Types.Input.Keyboard.CursorKeys;
+  background!: GameObjects.TileSprite
   constructor() {
     super('GameScene');
   }
 
-  preload() {}
-
   create() {
     this.renderBackground();
-    this.add.sprite(150, 720 / 2, 'dragon', 'dragon1');
+    this.cursors = this.input.keyboard.createCursorKeys();
+    this.player = new Player(this, this.cursors);
+    new EnemyGroup(this);
   }
 
-  override update() {}
+  override update() {
+    this.player.move();
+    this.background.tilePositionX += 1;
+  }
 
   private renderBackground() {
-    this.add.sprite(0, 0, 'background').setOrigin(0);
+    this.background = this.add.tileSprite(0, 0, 1280, 720, 'background').setOrigin(0);
   }
 }

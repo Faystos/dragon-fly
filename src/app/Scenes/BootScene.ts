@@ -12,6 +12,4 @@ export class BootScene extends Scene {
   create() {
     this.scene.start('PreloadScene');
   }
-
-  override update() {}
 }

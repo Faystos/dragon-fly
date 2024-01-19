@@ -21,7 +21,13 @@ export class AppComponent {
       PreloadScene,
       StartScene,
       GameScene
-    ]
+    ],
+    physics: {
+      default: 'arcade',
+      arcade: {
+        debug: true
+      }
+    }
   };
 
   constructor() {
