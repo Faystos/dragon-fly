@@ -1,13 +1,14 @@
 import { Scene, Types, GameObjects } from "phaser";
 import { Player } from "../Sprites/Player";
 import { EnemyGroup } from "../Sprites/EnemyGroup";
+import { SceneKey } from "../keys/Scene.key";
 
 export class GameScene extends Scene {
   player!: Player;
   cursors!: Types.Input.Keyboard.CursorKeys;
   background!: GameObjects.TileSprite
   constructor() {
-    super('GameScene');
+    super(SceneKey.GAME_SCENE);
   }
 
   create() {

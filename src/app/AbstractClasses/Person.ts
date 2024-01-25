@@ -19,6 +19,4 @@ export abstract class Person extends GameObjects.Sprite {
     this.scene.physics.add.existing(this);
     this.body.enable = true;
   }
-
-  move() {}
 }

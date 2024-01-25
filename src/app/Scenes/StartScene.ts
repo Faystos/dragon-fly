@@ -1,8 +1,10 @@
 import { Scene } from "phaser";
 
+import { SceneKey } from "../keys/Scene.key";
+
 export class StartScene extends Scene {
   constructor() {
-    super('StartScene');
+    super(SceneKey.START_SCENE);
   }
 
   create(){
@@ -26,7 +28,7 @@ export class StartScene extends Scene {
 
   private setEvents() {
     this.input.on('pointerdown', () => {
-      this.scene.start('GameScene');
+      this.scene.start(SceneKey.GAME_SCENE);
     });
   }
 }

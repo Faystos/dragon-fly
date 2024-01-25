@@ -1,11 +1,13 @@
-import {Math, Physics, Scene, Time } from "phaser";
+import { Math, Physics, Scene, Time } from "phaser";
+
 import { Enemy } from "./Enemy";
 
 export class EnemyGroup extends Physics.Arcade.Group {
   override scene!: Scene;
   time!: Time.TimerEvent;
   delay = 1500;
-  count = 10;
+  countMax = 10;
+  countCreated= 0
   constructor(scene: Scene) {
     super(scene.physics.world, scene);
     this.scene = scene;
@@ -19,7 +21,7 @@ export class EnemyGroup extends Physics.Arcade.Group {
   }
 
   tick() {
-    if (this.getLength() < this.count) {
+    if (this.countCreated < this.countMax) {
       this.addItemGroup();
     } else {
       this.time.remove();
@@ -27,8 +29,15 @@ export class EnemyGroup extends Physics.Arcade.Group {
   }
 
   addItemGroup() {
-    const enemy = Enemy.generate(this.scene, { x: 1200, y: Math.Between(100, 720 - 100) });
-    this.add(enemy);
+    let enemy = this.getFirstDead();
+
+    if (!enemy) {
+      enemy = Enemy.generate(this.scene, { x: 1200, y: Math.Between(100, 720 - 100) });
+      this.add(enemy);
+    } else {
+      enemy.reset();
+    }
     enemy.move();
+    ++this.countCreated;
   }
 }
