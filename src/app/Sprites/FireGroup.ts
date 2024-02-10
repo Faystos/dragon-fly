@@ -3,6 +3,8 @@ import { Physics, Scene } from "phaser";
 import { Fire } from "./Fire";
 import { Player } from "./Player";
 import { AttackKey } from "../keys/Attack.key";
+import { Enemy } from "./Enemy";
+import {Position} from "../types/Position";
 
 export class FireGroup extends Physics.Arcade.Group {
   override scene!: Scene;
@@ -16,9 +18,15 @@ export class FireGroup extends Physics.Arcade.Group {
     this.textureType = texture;
   }
 
-  addItemGroup(source: Player) {
-    const {x, y} = source;
-    const position = { x: x + source.width / 2, y }
+  addItemGroup(source: Player | Enemy) {
+    const { x, y } = source;
+    let position: Position;
+
+    if (source instanceof Player) {
+      position = { x: x + source.width / 2, y };
+    } else {
+      position = { x: x - source.width / 2, y }
+    }
 
     let fire = this.getFirstDead();
 

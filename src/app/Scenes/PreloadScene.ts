@@ -23,7 +23,8 @@ export class PreloadScene extends Scene {
       `${ AssetKey.URI }${ PersonsKey.ENEMY }.json`
     );
 
-    this.load.image('fire', `${ AssetKey.URI }${ AttackKey.FIRE }.png`);
+    this.load.image(AttackKey.FIRE, `${ AssetKey.URI }${ AttackKey.FIRE }.png`);
+    this.load.image(AttackKey.BULLET, `${ AssetKey.URI }${ AttackKey.BULLET }.png`);
   }
 
   create() {

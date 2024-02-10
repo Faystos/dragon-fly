@@ -48,7 +48,7 @@ export class Fire extends GameObjects.Sprite {
     if (this.textureType === AttackKey.FIRE) {
       this.body.setVelocityX(+150);
     } else if (this.textureType === AttackKey.BULLET) {
-      this.body.setVelocityX(-150);
+      this.body.setVelocityX(-350);
     }
   }
 
